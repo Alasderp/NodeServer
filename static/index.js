@@ -128,16 +128,19 @@ function updateDog(){
 function allDogs(){
     let url = baseURL + "api/dog"
 
-
-    $.getJSON(url, 
+    $.getJSON(url,   
+        
         function(jsonData){
             //Loop through json data returned by server
+
             for(let x in jsonData){
                 dog = jsonData[x];
-                $("#body").append("Name:" + dog.name + "<br>");
-                $("#body").append("Age:" + dog.age + "<br>");
-                $("#body").append("Breed:" + dog.species + "<br>");
+                $("#dogContainer").append("Name:" + dog.name + "<br>");
+                $("#dogContainer").append("Age:" + dog.age + "<br>");
+                $("#dogContainer").append("Breed:" + dog.species + "<br>");
+                $("#dogContainer").append("<br>");
             }
+
         }
     );
 

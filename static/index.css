@@ -1,0 +1,13 @@
+#body {
+    background-color: powderblue;
+}
+
+#dogContainer {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Comic Sans MS";
+  border-style:dotted;
+  border-width:5px;
+  text-align: center;
+  background-color: aquamarine;
+}

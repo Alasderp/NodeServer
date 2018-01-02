@@ -23,6 +23,12 @@ function init(){
         getDog();
     }
     );
+
+        $("#updateDog").click(function()
+    {
+        updateDog();
+    }
+    );
     
 
 }
@@ -65,7 +71,5 @@ function getDog(){
 function updateDog(){
 
     let id = $("#idInput").val();
-
-
-
+    
 }

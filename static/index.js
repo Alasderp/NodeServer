@@ -37,6 +37,12 @@ function init(){
         deleteDog();
     }
     );
+
+    $("#allDogs").click(function()
+    {
+        allDogs();
+    }
+    );
     
 
 }
@@ -90,5 +96,41 @@ function deleteDog(){
 function updateDog(){
 
     let id = $("#idInput").val();
+    let url = baseURL + "api/updateDog/" + id;
+
+    let name = $("#nameInput").val();
+    let age = $("#ageInput").val();
+    let breed = $("#breedInput").val();
+
+    let payload = {
+        "name":name,
+        "age":age,
+        "species":breed
+    };
+
+    $.ajax({
+        url: url,
+        type: 'PUT',
+        data: payload,
+        success: function() {}
+});
+
     
+}
+
+function allDogs(){
+    let url = baseURL + "api/dog"
+
+
+    $.getJSON(url, 
+        function(jsonData){
+            for(let x in jsonData){
+                dog = jsonData[x];
+                $("#body").append("Name:" + dog.name + "<br>");
+                $("#body").append("Age:" + dog.age + "<br>");
+                $("#body").append("Breed:" + dog.species + "<br>");
+            }
+        }
+    );
+
 }

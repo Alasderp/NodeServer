@@ -62,6 +62,22 @@ router.delete("/api/dog/delete/:id", (req,res) =>{
 });
 
 
+router.put("/api/updateDog/:id", (req,res) => {
+
+    let dogID = req.params.id;
+
+        for(let i in dogs){
+            if(dogs[i].id == dogID){
+
+                dogs[i].name = req.body.name;
+                dogs[i].age = req.body.age;
+                dogs[i].species = req.body.species;
+                break;
+            }
+        }
+
+});
+
 app.get('/',function(req,res){
        
      res.sendFile(path.join(__dirname + '/static/index.html'));

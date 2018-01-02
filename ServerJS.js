@@ -47,6 +47,21 @@ router.get("/api/dog/:id", (req,res) => {
 
 });
 
+//Delete Dog
+router.delete("/api/dog/delete/:id", (req,res) =>{
+
+    let dogID = req.params.id;
+
+    for(let i in dogs){
+        if(dogs[i].id == dogID){
+            dogs.splice(i,1);
+            break;
+        }
+    }
+
+});
+
+
 app.get('/',function(req,res){
        
      res.sendFile(path.join(__dirname + '/static/index.html'));

@@ -1,3 +1,5 @@
+var baseURL = "http://localhost:3000/";
+
 try	{
 	$(function()
 	{
@@ -24,9 +26,15 @@ function init(){
     }
     );
 
-        $("#updateDog").click(function()
+    $("#updateDog").click(function()
     {
         updateDog();
+    }
+    );
+
+    $("#deleteDog").click(function()
+    {
+        deleteDog();
     }
     );
     
@@ -47,7 +55,7 @@ function addDog(){
         "species":breed
     };
 
-    let url = "http://localhost:3000/api/dog/add";
+    let url = baseURL + "api/dog/add";
 
     $.post(url,payload,function(){});
 
@@ -57,7 +65,7 @@ function addDog(){
 function getDog(){
     let id = $("#idInput").val();
 
-    $.getJSON(("http://localhost:3000/api/dog/" + id), 
+    $.getJSON((baseURL + "api/dog/" + id), 
         function(jsonData){
             dog = jsonData;
             $("#body").append("Name:" + dog.name + "<br>");
@@ -67,6 +75,17 @@ function getDog(){
     );
     
 }
+
+function deleteDog(){
+    let id = $("#idInput").val();
+
+    var url=baseURL + "api/dog/delete/" + id
+	var settings={type:"DELETE"};
+
+	$.ajax(url,settings);
+
+}
+
 
 function updateDog(){
 

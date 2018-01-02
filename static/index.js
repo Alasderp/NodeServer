@@ -11,6 +11,7 @@ catch (e)
 	alert("*** jQuery not loaded. ***");
 }
 
+//Find buttons on page and add click handlers
 function init(){
     
     $("#addDog").click(function()
@@ -47,13 +48,16 @@ function init(){
 
 }
 
+//Create and add dog
 function addDog(){
 
+    //Get values from text boxes
     let id = $("#idInput").val();
     let name = $("#nameInput").val();
     let age = $("#ageInput").val();
     let breed = $("#breedInput").val();
 
+    //Create json object from values
     let payload = {
         "id":id,
         "name":name,
@@ -67,12 +71,13 @@ function addDog(){
 
 }
 
-
+//Get individual dog by id
 function getDog(){
     let id = $("#idInput").val();
 
     $.getJSON((baseURL + "api/dog/" + id), 
-        function(jsonData){
+    //Success function
+    function(jsonData){
             dog = jsonData;
             $("#body").append("Name:" + dog.name + "<br>");
             $("#body").append("Age:" + dog.age + "<br>");
@@ -82,6 +87,7 @@ function getDog(){
     
 }
 
+//Remove a dog by id
 function deleteDog(){
     let id = $("#idInput").val();
 
@@ -92,7 +98,7 @@ function deleteDog(){
 
 }
 
-
+//Update a dog
 function updateDog(){
 
     let id = $("#idInput").val();
@@ -118,12 +124,14 @@ function updateDog(){
     
 }
 
+//Retrieve all dogs
 function allDogs(){
     let url = baseURL + "api/dog"
 
 
     $.getJSON(url, 
         function(jsonData){
+            //Loop through json data returned by server
             for(let x in jsonData){
                 dog = jsonData[x];
                 $("#body").append("Name:" + dog.name + "<br>");

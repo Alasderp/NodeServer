@@ -13,15 +13,21 @@ const router = express.Router();
 app.use("/", router);
 
 
-app.listen(3000, function(){console.log("App listening on port 3000")});
+app.listen(3001, function(){console.log("App listening on port 3001")});
 
 //Using array in memory to represent database
 let dogs = [
     {
         id:1,
         name:"Koshi",
-        age:14,
+        age:"12 ½",
         species:"Collie-Poodle"
+    },
+    {
+          id:2,
+          name:"Rosha",
+          age:14,
+          species:"Golden Retriever"          
     }
 ];
 
@@ -33,10 +39,9 @@ router.get("/api/dog", (req, res) => {
 
 //Add a dog
 router.post("/api/dog/add", (req,res) => {
-    console.log(req.body);
     //Push the json object in the request to the dogs array
     dogs.push(req.body);
-    res.sendStatus(204);
+    res.sendStatus(201);
 });
 
 //Get individual Dog
@@ -51,6 +56,8 @@ router.get("/api/dog/:id", (req,res) => {
         }
     }
 
+    res.sendStatus(200);
+    
 });
 
 //Delete Dog
@@ -60,10 +67,13 @@ router.delete("/api/dog/delete/:id", (req,res) =>{
 
     for(let i in dogs){
         if(dogs[i].id == dogID){
+            found = true;
             dogs.splice(i,1);
             break;
         }
     }
+
+    res.sendStatus(200);
 
 });
 
@@ -82,6 +92,8 @@ router.put("/api/updateDog/:id", (req,res) => {
                 break;
             }
         }
+
+    res.sendStatus(200);
 
 });
 
